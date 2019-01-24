@@ -1,13 +1,45 @@
 import React from "react";
 
 export class Home extends React.Component {
-
-    state = {
-        age: this.props.age,
-        homeLink: "Link",
-        inputValue: ''
+    constructor(props) {
+        super(props);
+        this.state = {
+            age: this.props.age,
+            homeLink: "Link",
+            inputValue: ''
+        };
+        console.log('constructor')
     };
 
+
+    componentWillMount() {
+        console.log("Component will mount");
+    };
+
+    componentDidMount() {
+        console.log("did mount");
+    }
+
+    componentWillReceiveProps(nextProps, nextContext) {
+        console.log("Receive props: ", nextProps);
+    };
+
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        console.log("Should component update: ", nextProps, nextState);
+        return true;
+    };
+
+    componentWillUpdate(nextProps, nextState, nextContext) {
+        console.log("will update: ", nextProps, nextState);
+    };
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log("did update: ", prevProps, prevState);
+    };
+
+    componentWillUnmount() {
+        console.log("component will unmount");
+    };
 
     onMakeMeOlder = () => {
         let age = this.state.age + 3;
