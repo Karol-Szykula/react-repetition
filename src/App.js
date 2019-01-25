@@ -1,17 +1,26 @@
 import React from "react";
-import {Link} from "react-router";
+import {Route} from "react-router";
+import {BrowserRouter} from 'react-router-dom'
 
-export const Header = (props) => {
-    return (
-        <nav className="navbar navbar-default">
-            <div className="container">
-                <div className="navbar-header">
-                    <ul className="nav navbar-nav">
-                        <li><Link to={"/home"} activeStyle={{color: "red"}}>Home</Link></li>
-                        <li><Link to={"/user/10"} activeClassName={"active"}>User</Link></li>
-                    </ul>
+import {Root} from "./components/Root";
+import {Home} from "./components/Home";
+import {User} from "./components/User";
+
+class App extends React.Component {
+    render() {
+        return (
+            <BrowserRouter>
+                <div>
+                    <Route path={"/"} component={Root}>
+                        <Route path={"user/:id"} component={User}/>
+                        <Route path={"home"} component={Home}/>
+                    </Route>
+                    <Route path={"home-single"} component={Home}/>
                 </div>
-            </div>
-        </nav>
-    );
-};
+            </BrowserRouter>
+        );
+    }
+}
+
+export default App
+
