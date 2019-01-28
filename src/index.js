@@ -22,13 +22,15 @@ const reducer = (state = initialState, action) => {
             let addResult = state.result + action.payload;
             return {
                 ...state,
-                result: addResult
+                result: addResult,
+                lastValues: [...state.lastValues, action.payload]
             };
         case "SUBTRACT":
             let subtractResult = state.result - action.payload;
             return {
                 ...state,
-                result: subtractResult
+                result: subtractResult,
+                lastValues: [...state.lastValues, action.payload]
             };
         default:
             return state;
@@ -40,7 +42,7 @@ const store = createStore(reducer);
 // console.log(store.getState());
 
 store.subscribe(() => {
-    console.log("store updated", store.getState().result)
+    console.log("store updated", store.getState())
 });
 
 store.dispatch({
