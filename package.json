@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Karol-Szykula/react-repetition/issues"
   },
-  "homepage": "https://github.com/Karol-Szykula/react-repetition#readme"
+  "homepage": "https://github.com/Karol-Szykula/react-repetition#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
