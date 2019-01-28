@@ -33,7 +33,7 @@ class App extends React.Component {
                     </ul>
                 </nav>
 
-                <Route path={'/'} component={Home}/>
+                <Route exact={true} path={'/'} component={Home}/>
                 <Route path={'/category'} component={Category}/>
                 <Route path={'/products'} component={Products}/>
 
