@@ -9,14 +9,12 @@
 //     </BrowserRouter>
 // ), document.getElementById('root'));
 
-import {createStore} from "redux";
+import {createStore, combineReducers} from "redux";
 
-const initialState = {
+const mathReducer = (state = {
     result: 1,
     lastValues: []
-};
-
-const reducer = (state = initialState, action) => {
+}, action) => {
     switch (action.type) {
         case "ADD":
             let addResult = state.result + action.payload;
@@ -37,7 +35,27 @@ const reducer = (state = initialState, action) => {
     }
 };
 
-const store = createStore(reducer);
+const userReducer = (state = {
+    name: "Max",
+    age: 27
+}, action) => {
+    switch (action.type) {
+        case "SET_NAME":
+            return {
+                ...state,
+                name: action.payload
+            };
+        case "SET_AGE":
+            return {
+                ...state,
+                age: action.payload
+            };
+        default:
+            return state;
+    }
+};
+
+const store = createStore(combineReducers({mathReducer, userReducer}));
 
 // console.log(store.getState());
 
@@ -47,12 +65,7 @@ store.subscribe(() => {
 
 store.dispatch({
     type: "ADD",
-    payload: 10
-});
-
-store.dispatch({
-    type: "ADD",
-    payload: 45
+    payload: 12
 });
 
 store.dispatch({
@@ -60,4 +73,13 @@ store.dispatch({
     payload: 33
 });
 
+store.dispatch({
+    type: "SET_AGE",
+    payload: 31
+});
+
+store.dispatch({
+    type: "SET_NAME",
+    payload: "Karol"
+});
 
